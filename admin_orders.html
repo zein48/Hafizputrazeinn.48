@@ -1,0 +1,19 @@
+<!-- templates/admin_orders.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daftar Order</title>
+</head>
+<body>
+    <h1>Semua Order</h1>
+    {% for o in orders %}
+        <div>
+            User: {{ o.user.username }} |
+            Game: {{ o.voucher.nama_game }} |
+            Status: {{ o.status }}
+        </div>
+    {% endfor %}
+
+    <a href="{{ url_for('admin_panel') }}">Kembali ke Admin Panel</a>
+</body>
+</html>

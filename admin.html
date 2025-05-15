@@ -1,0 +1,35 @@
+<!-- templates/admin.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+
+    <p>Total User: {{ total_users }}</p>
+    <p>Total Order: {{ total_orders }}</p>
+    <p>Total Pendapatan: Rp {{ total_income }}</p>
+
+    <h2>Tambah Voucher</h2>
+    <form method="post" action="{{ url_for('tambah_voucher') }}">
+        <label>Nama Game:</label>
+        <input type="text" name="nama_game" required><br>
+        <label>Nominal:</label>
+        <input type="number" name="nominal" required><br>
+        <label>Harga:</label>
+        <input type="number" name="harga" required><br>
+        <button type="submit">Tambah</button>
+    </form>
+
+    <h2>Daftar Voucher</h2>
+    {% for v in vouchers %}
+        <div>
+            <strong>{{ v.nama_game }}</strong> - {{ v.nominal }} - Rp {{ v.harga }}
+        </div>
+    {% endfor %}
+
+    <a href="{{ url_for('admin_orders') }}">Lihat Semua Order</a> |
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html

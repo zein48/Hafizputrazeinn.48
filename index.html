@@ -1,50 +1,22 @@
-<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   Birthday Card with Animation
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&amp;display=swap" rel="stylesheet"/>
-  <style>
-   body {
-      font-family: 'Fredoka One', cursive;
-    }
-   @keyframes bounceMove {
-     0%, 100% {
-       transform: translateY(0);
-     }
-     50% {
-       transform: translateY(-20px);
-     }
-   }
-   .animate-bounceMove {
-     animation: bounceMove 2s ease-in-out infinite;
-   }
-  </style>
- </head>
- <body class="bg-[#23568a] min-h-screen flex items-center justify-center p-6">
-  <div class="max-w-4xl w-full flex flex-col md:flex-row items-center md:items-start">
-   <div class="flex-1 text-left text-[#f0e3a8]">
-    <p class="uppercase text-xs font-semibold tracking-widest mb-2" style="font-family: Arial, sans-serif;">
-    To my beautiful sister,
-    </p>
-    <h1 class="text-[4.5rem] leading-[4.5rem] mb-4 animate-bounceMove" style="font-family: 'Fredoka One', cursive;">
-     HAPPY
-     <br/>
-     BIRTHDAY!
-    </h1>
-    <p class="italic text-sm max-w-xs" style="font-family: Arial, sans-serif;">
-     Dri Bg Koding ("hafizputrazein").
-     <br/>
-     Selamat ya, semoga yg di impikan tercapai !
-    </p>
-   </div>
-   <div class="flex-1 flex justify-end mt-8 md:mt-0">
-    <img alt="Birthday cake with two lit candles and pink icing decorations on a blue background with confetti" class="max-w-full h-auto" height="300" src="https://storage.googleapis.com/a1aa/image/22f4460d-6c89-4ade-dc48-319a92e9c45b.jpg" width="400"/>
-   </div>
-  </div>
- </body>
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voucher Game</title>
+</head>
+<body>
+    <h1>Daftar Voucher</h1>
+    {% for voucher in vouchers %}
+        <div>
+            <h2>{{ voucher.nama_game }}</h2>
+            <p>Nominal: {{ voucher.nominal }}</p>
+            <p>Harga: Rp {{ voucher.harga }}</p>
+            {% if session.user_id %}
+                <a href="{{ url_for('order', voucher_id=voucher.id) }}">Order</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login untuk order</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+</body>
 </html>
